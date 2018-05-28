@@ -67,8 +67,8 @@ namespace DeDupeRulesAutoPublisher.Plugins {
                                             <all-attributes/>
                                             <filter type='and' >
                                                 <condition attribute='statecode' operator='eq' value='0' />"
-                                  + filter +
-                                  @"</filter>
+                                                + filter +
+                                          @"</filter>
                                         </entity>
                                     </fetch>";
             var deDupeRules = service.RetrieveMultiple(new FetchExpression(deDupeRuleFetch)).Entities.ToList();

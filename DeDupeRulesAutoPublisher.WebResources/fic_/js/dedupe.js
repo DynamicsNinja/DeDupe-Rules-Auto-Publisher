@@ -1,8 +1,9 @@
 ﻿onlineIcon = "../img/online.png";
 offlineIcon = "../img/offline.png";
 online = false;
-stepId = "f6a39ea5-96f7-e711-a954-000d3a3702ca";
+stepId = "e049ab1e-aa62-e811-8123-5065f38a9a41";
 configId = "";
+var VERSION = parent.Xrm.Page.context.getVersion() != undefined ? parent.Xrm.Page.context.getVersion().substring(0, 3) : "8.0";
 
 toastr.options = {
     "closeButton": true,
@@ -37,7 +38,7 @@ function enablePluginStep() {
         type: "PATCH",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/sdkmessageprocessingsteps(" + stepId + ")",
+        url: Xrm.Page.context.getClientUrl() + "/api/data/v" + VERSION + "/sdkmessageprocessingsteps(" + stepId + ")",
         data: JSON.stringify(entity),
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
@@ -70,7 +71,7 @@ function getStepState() {
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/sdkmessageprocessingsteps(" + stepId + ")?$select=statecode,statuscode",
+        url: Xrm.Page.context.getClientUrl() + "/api/data/v" + VERSION + "/sdkmessageprocessingsteps(" + stepId + ")?$select=statecode,statuscode",
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
             XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
@@ -103,7 +104,7 @@ function populateRuleTable() {
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/duplicaterules?$select=name,statecode",
+        url: Xrm.Page.context.getClientUrl() + "/api/data/v" + VERSION + "/duplicaterules?$select=name,statecode",
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
             XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
@@ -149,7 +150,7 @@ function saveConfig() {
         type: "PATCH",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/fic_dedupeconfigurations(" + configId + ")",
+        url: Xrm.Page.context.getClientUrl() + "/api/data/v" + VERSION + "/fic_dedupeconfigurations(" + configId + ")",
         data: JSON.stringify(entity),
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
@@ -172,7 +173,7 @@ function getConfiguration() {
         type: "GET",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/fic_dedupeconfigurations",
+        url: Xrm.Page.context.getClientUrl() + "/api/data/v" + VERSION + "/fic_dedupeconfigurations",
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
             XMLHttpRequest.setRequestHeader("OData-Version", "4.0");
@@ -212,7 +213,7 @@ function createConfiguration() {
         type: "POST",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
-        url: Xrm.Page.context.getClientUrl() + "/api/data/v8.2/fic_dedupeconfigurations",
+        url: Xrm.Page.context.getClientUrl() + "/api/data/v" + VERSION + "/fic_dedupeconfigurations",
         data: JSON.stringify(entity),
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("OData-MaxVersion", "4.0");
